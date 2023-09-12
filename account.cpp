@@ -12,58 +12,49 @@
 //    d. Function 'withdraw' that takes an amount and subtracts it from the balance.
 // 4. A destructor that displays a message like "Account with balance <balance_value> is being destroyed."
 
-#ifndef ACCOUNT_H
-#define ACCOUNT_H
+#include "account.h"
 #include <iostream>
 
-class Account {
-private:
-    // Private member variable to store the balance.
-    double balance;
 
-public:
-     // Default constructor.
-    // Initialize 'balance' to 0.
-    Account(){
-        balance = 0;
+// Default constructor.
+// Initialize 'balance' to 0.
+Account::Account(){
+    balance = 0;
+}
+
+// Parameterized constructor.
+// Initialize 'balance' with the provided 'initialBalance'.
+Account::Account(double initialBalance){
+    balance = initialBalance;
+}
+
+// Getter function to return the current balance.
+double Account::getBalance(){
+    return balance;
+}
+
+// Setter function to set the balance to a new value.
+void Account::setBalance(double newBalance){
+    balance = newBalance;
+}
+
+// Function to deposit an amount into the account.
+void Account::deposit(double amount){
+    balance = balance + amount;
+}
+
+// Function to withdraw an amount from the account.
+void Account::withdraw(double amount){
+    if (balance > amount){
+        balance = balance - amount;
     }
-
-    // Parameterized constructor.
-    // Initialize 'balance' with the provided 'initialBalance'.
-    Account(double initialBalance){
-        balance = initialBalance;
+    else{
+        std::cout << "Insufficient funds!" << "\n";
     }
+}
 
-    // Getter function to return the current balance.
-    double getBalance(){
-        return balance;
-    }
-
-    // Setter function to set the balance to a new value.
-    void setBalance(double newBalance){
-        balance = newBalance;
-    }
-
-    // Function to deposit an amount into the account.
-    void deposit(double amount){
-        balance = balance + amount;
-    }
-
-    // Function to withdraw an amount from the account.
-    void withdraw(double amount){
-        if (balance > amount){
-            balance = balance - amount;
-        }
-        else{
-            std::cout << "Insufficient funds!" << "\n";
-        }
-    }
-
-    // Destructor.
-    // Display a message indicating the account is being destroyed.
-    ~Account(){
-        std::cout << "Account with balance " << balance << " is being destroyed.\n";
-    }
-};
-
-#endif // ACCOUNT_H
+// Destructor.
+// Display a message indicating the account is being destroyed.
+Account::~Account(){
+    std::cout << "Account with balance " << balance << " is being destroyed.\n";
+}
