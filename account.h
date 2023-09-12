@@ -55,7 +55,7 @@ public:
             balance = balance - amount;
         }
         else{
-            std::cout << "Insufficient Funds!" << "\n";
+            std::cout << "Insufficient funds!" << "\n";
         }
     }
 
