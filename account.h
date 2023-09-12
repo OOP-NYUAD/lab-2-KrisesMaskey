@@ -14,6 +14,7 @@
 
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
+#include <iostream>
 
 class Account {
 private:
@@ -21,29 +22,48 @@ private:
     double balance;
 
 public:
-    // Default constructor.
+   // Default constructor.
     // Initialize 'balance' to 0.
-    Account();
+    Account(){
+        balance = 0;
+    }
 
     // Parameterized constructor.
     // Initialize 'balance' with the provided 'initialBalance'.
-    Account(double initialBalance);
+    Account(double initialBalance){
+        balance = initialBalance;
+    }
 
     // Getter function to return the current balance.
-    double getBalance();
+    double getBalance(){
+        return balance;
+    }
 
     // Setter function to set the balance to a new value.
-    void setBalance(double newBalance);
+    void setBalance(double newBalance){
+        balance = newBalance;
+    }
 
     // Function to deposit an amount into the account.
-    void deposit(double amount);
+    void deposit(double amount){
+        balance = balance + amount;
+    }
 
     // Function to withdraw an amount from the account.
-    void withdraw(double amount);
+    void withdraw(double amount){
+        if (balance > amount){
+            balance = balance - amount;
+        }
+        else{
+            std::cout << "Insufficient Funds!" << "\n";
+        }
+    }
 
     // Destructor.
     // Display a message indicating the account is being destroyed.
-    ~Account();
+    ~Account(){
+        std::cout << "Account with balance " << balance << " is being destroyed.\n";
+    }
 };
 
 #endif // ACCOUNT_H
